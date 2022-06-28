@@ -27,6 +27,10 @@ git config --global user.email "<email>"
 git config --global user.name "<name>"
 ```
 
+### Deployment
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https%3A%2F%2Fgithub.com%2F1407arjun%2Fcli-shorturl-template%2Ftree%2Fmain)
+
 ## Getting started
 
 ### Adding a URL
