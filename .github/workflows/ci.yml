@@ -1,0 +1,39 @@
+name: Update URLs
+
+on:
+  workflow_dispatch:
+    inputs:
+      type:
+        required: true
+      name:
+        required: true
+      slug:
+      url:
+
+jobs:
+  append:
+    runs-on: ubuntu-latest
+    permissions:
+      actions: write
+      contents: write
+    strategy:
+      matrix:
+        node-version: [16.x]
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Run script
+        run: node bin/script.js ${{ github.event.inputs.type }} ${{ github.event.inputs.name }} ${{ github.event.inputs.slug }} ${{ github.event.inputs.url }}
+
+      - name: Commit and push
+        run: |
+          git config --global user.email "<email>"
+          git config --global user.name "<name>"
+          git add .
+          git commit -m "${{ github.event.inputs.type }} URL ${{ github.event.inputs.name }}"
+          git push
