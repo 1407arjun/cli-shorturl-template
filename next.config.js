@@ -8,7 +8,7 @@ module.exports = module.exports = {
                 return {
                     source: `/${r.slug}`,
                     destination: r.url,
-                    permanent: true
+                    permanent: false
                 }
             })
         ]
